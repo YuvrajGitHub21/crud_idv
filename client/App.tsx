@@ -12,6 +12,13 @@ import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import NotFound from "./pages/NotFound";
 
+import Index from "./pages/Index";
+import ChooseTemplate from "./pages/ChooseTemplate";
+import FormBuilder from "./pages/FormBuilder";
+import DocumentVerification from "./pages/DocumentVerification";
+import BiometricVerification from "./pages/BiometricVerification";
+import Preview from "./pages/Preview";
+
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -28,6 +35,21 @@ const App = () => (
           <Route path="/dashboard" element={<Dashboard />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
+
+          <Route path="/home" element={<Index />} />
+          <Route path="/choose-template" element={<ChooseTemplate />} />
+          <Route path="/form-builder" element={<FormBuilder />} />
+          <Route
+            path="/document-verification"
+            element={<DocumentVerification />}
+          />
+          <Route
+            path="/biometric-verification"
+            element={<BiometricVerification />}
+          />
+          <Route path="/preview" element={<Preview />} />
+
+
         </Routes>
       </BrowserRouter>
     </TooltipProvider>
