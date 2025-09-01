@@ -2,15 +2,16 @@ import type { Config } from "tailwindcss";
 
 export default {
   darkMode: ["class"],
-  content: ["./client/**/*.{ts,tsx}"],
+  content: [
+    "./index.html",
+    "./client/**/*.{ts,tsx}",   // <- ensure client is scanned
+  ],
   prefix: "",
   theme: {
     container: {
       center: true,
       padding: "2rem",
-      screens: {
-        "2xl": "1400px",
-      },
+      screens: { "2xl": "1400px" },
     },
     extend: {
       colors: {
@@ -19,24 +20,10 @@ export default {
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
+
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
-        },
-        // Arcon design system colors
-        arcon: {
-          blue: {
-            DEFAULT: "#2563EB",
-            hover: "#1E4FCC",
-          },
-          coral: "#D83A52",
-          gray: {
-            heading: "#2E2E2E",
-            primary: "#3A4651",
-            secondary: "#6B7380",
-            border: "#E5E7EB",
-          },
-          panel: "#F7FAFF",
         },
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
@@ -62,6 +49,21 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+
+        // keep your existing ARCON tokens if you use them elsewhere
+        arcon: {
+          blue: { DEFAULT: "#2563EB", hover: "#1E4FCC" },
+          coral: "#D83A52",
+          gray: {
+            heading: "#2E2E2E",
+            primary: "#3A4651",
+            secondary: "#6B7380",
+            border: "#E5E7EB",
+          },
+          panel: "#F7FAFF",
+        },
+
+        // === add these dashboard tokens used by TemplatesContent & friends ===
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",
@@ -72,34 +74,46 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+
+        "primary-text": "hsl(var(--primary-text))",
+        "secondary-text": "hsl(var(--secondary-text))",
+        "placeholder-text": "hsl(var(--placeholder-text))",
+        "light-grey-bg": "hsl(var(--light-grey-bg))",
+        "grey-bg": "hsl(var(--grey-bg))",
+        "border-color": "hsl(var(--border-color))",
+        "header-border": "hsl(var(--header-border))",
+        "table-header-bg": "hsl(var(--table-header-bg))",
+        "positive-bg": "hsl(var(--positive-bg))",
+        "warning-bg": "hsl(var(--warning-bg))",
+        "warning-text": "hsl(var(--warning-text))",
+        "completed-bg": "hsl(var(--completed-bg))",
+        "pink-accent": "hsl(var(--pink-accent))",
+        "avatar-1": "hsl(var(--avatar-1))",
+        "avatar-2": "hsl(var(--avatar-2))",
+        "avatar-3": "hsl(var(--avatar-3))",
+        "avatar-4": "hsl(var(--avatar-4))",
+        "avatar-5": "hsl(var(--avatar-5))",
+        "avatar-6": "hsl(var(--avatar-6))",
+        "avatar-7": "hsl(var(--avatar-7))",
+        "avatar-8": "hsl(var(--avatar-8))",
       },
+
       fontFamily: {
+        // P2 used Roboto in places — keep both available
         roboto: ["Roboto", "system-ui", "sans-serif"],
       },
+
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
-        card: "12px",
-        control: "8px",
+        card: "12px",      // P2 extra
+        control: "8px",    // P2 extra
       },
+
       keyframes: {
-        "accordion-down": {
-          from: {
-            height: "0",
-          },
-          to: {
-            height: "var(--radix-accordion-content-height)",
-          },
-        },
-        "accordion-up": {
-          from: {
-            height: "var(--radix-accordion-content-height)",
-          },
-          to: {
-            height: "0",
-          },
-        },
+        "accordion-down": { from: { height: "0" }, to: { height: "var(--radix-accordion-content-height)" } },
+        "accordion-up":   { from: { height: "var(--radix-accordion-content-height)" }, to: { height: "0" } },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
